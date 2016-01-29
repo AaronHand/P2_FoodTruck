@@ -23,6 +23,7 @@ include 'configFoodTruck.php'; //contains all the functions for this application
 //create a constant named THIS_PAGE
 define('THIS_PAGE', basename($_SERVER['PHP_SELF']));
 
+
 //array to hold items
 $items[] = new Item("Burrito", "Includes awesome sauce!", 7.95);
 $items[] = new Item("Taco", "Includes cheese and lettuce", 3.95);
@@ -37,7 +38,7 @@ if (isset($_POST['submit']))
     var_dump($_POST);
     echo '</pre>';*/
     
-   $total = 0;
+  // $total = 0;
     
     
     $itemsPurchased = $_POST['quantity'];
@@ -49,8 +50,8 @@ if (isset($_POST['submit']))
     }*/
         //validate user input for each quantity box to make sure an integer number
         //display feedback to the user
-        if(!filter_var($input, FILTER_VALIDATE_INT) && $input != ""){
-            
+        //if(!filter_var($input, FILTER_VALIDATE_INT) && $input != ""){
+          if((!is_numeric($input) && $input != "") || $input < 0){  
             echo "Quantity must be an integer value";
             //reset $_POST data since 'submit' cached and need to reset to display form again
             unset($_POST);
