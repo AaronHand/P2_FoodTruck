@@ -83,24 +83,24 @@ function makeForm($array)
 **/
 function calculateTotal($itemsPurchased, $itemsAvailable)
 {
-        
+    $total = 0;
     //loop through itemsPurchased array that hold the items the user purchased as key and quantity purchased as value
     foreach($itemsPurchased as $item => $quantity){
         
         //loop through itemsAvailable array which is Item array that holds the items available that dynamically get added to form
         foreach ($itemsAvailable as $itm){
-         
-         //if the item name in itemsAvailable array matches the item the user selected
-         if ($itm->name == $item )
-             
-             //grab the item object from the itemsAvailable array
-              $itemObject = $itm;
+
+             //if the item name in itemsAvailable array matches the item the user selected
+             if ($itm->name == $item ) {
+
+                 //grab the item object from the itemsAvailable array
+                 $itemObject = $itm;
+
+                 //find the price of the array by selecting the price property of the item and store in price variable
+                 $price = $itemObject->price;
+             }
                 
-             //find the price of the array by selecting the price property of the item and store in price variable
-             $price = $itemObject->price;
-            
-                
-     }
+        }
         //calculate the total of the purchase which is the price times quantity of each item purchased 
         $total += ($price * $quantity);
  
@@ -109,7 +109,7 @@ function calculateTotal($itemsPurchased, $itemsAvailable)
     //return total
     return $total;
     
-    }//end calculateTotal()
+}//end calculateTotal()
 
 
 /**
